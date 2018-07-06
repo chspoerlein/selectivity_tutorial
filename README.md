@@ -30,7 +30,7 @@ $$\\sum\_{i=1}^I (\\frac{a\_{i-1}}{N} +\\frac{a\_{i}}{2\*N})$$
 where i refers to the educational categories, *a*<sub>*i* − 1</sub> to the number of individuals one educational category lower \[this term is ignored for i=1, i.e., the lowest educational category\], *a*<sub>*i*</sub> to the number of individuals in the *i*<sup>*t**h*</sup> educational category and N to the total number of respondents in the same region, age and gender group as the respondent. The resulting values range from 0 to 1 where, for example, 0.6 would suggest that 60 percent of the regions's population with the same age and sex have an educational attainment that is at most as high as the individual considered.
 
 Hence, every individual from the same region, the same age group, the same sex and the same educational attainment has the same value of relativ education. This makes things somewhat easier as we only need one observation for each of the different combinations of characteristics.
-=======
+
 
 Additional measures
 -------------------
