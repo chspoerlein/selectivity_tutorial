@@ -14,6 +14,8 @@ Introduction
 ============
 
 This tutorial describes the usage of pre-trained machine learning (ML) tools to predict the bias in measuring educational selectivity on the country-level as opposed to the regional level. In short, measurement error can substantially bias measures of educational selectivity in case outmigration is highly concentrated in some regions and when these regions are atypical in terms of their levels of unemployment and economic development. More details can be found in the article "Why we should care about regional origins: Educational selectivity among recent refugees and labor migrants in Western Europe." by Christoph Spörlein and Cornelia Kristen, published in Frontiers (2018).
+=======
+This tutorial describes the usage of pre-trained machine learning (ML) tools to predict the bias in measuring educational selectivity on the country-level as opposed to the regional level. In short, measurement bias can substantially bias measures of educational selectivity in case outmigration is highly concentrated in some regions and when these regions are atypical levels of unemployment and economic development. More details can be found in the article "Why we should care about regional origins: Educational selectivity among recent refugees and labor migrants in Western Europe." by Christoph Spörlein and Cornelia Kristen, published in Frontiers (2018).
 
 Pre-processing data
 ===================
@@ -27,9 +29,15 @@ In short, educational selectivity is measured by recording individuals position 
 
 $$\\sum\_{i=1}^I (\\frac{a\_{i-1}}{N} +\\frac{a\_{i}}{2\*N})$$
 
+<<<<<<< HEAD
 where i refers to the educational categories, *a*<sub>*i* − 1</sub> to the number of individuals one educational category lower \[this term is ignored for i=1, i.e., the lowest educational category\], *a*<sub>*i*</sub> to the number of individuals in the *i*<sup>*t**h*</sup> educational category and N to the total number of respondents in the same region, age and gender group as the respondent. The resulting values range from 0 to 1 where, for example, 0.6 would suggest that 60 percent of the regions's population with the same age and sex have an educational attainment that is at most as high as the individual considered.
 
 Hence, every individual from the same region, the same age group, the same sex and the same educational attainment has the same value of relativ education. This makes things somewhat easier as we only need one observation for each of the different combinations of characteristics.
+=======
+where i refers to the educational categories, *a*<sub>*i* − 1</sub> to the number of individuals one educational category lower \[this term is ignored for i=1, i.e., the lowest educational category\], *a*<sub>*i*</sub> to the number of individuals in the *i*<sup>*t**h*</sup> educational category and N to the total number of respondents in the same region, age and gender group as the respondent. The resulting values range from 0 to 1 where, for example, 0.6 would suggest that 60 percent of the regions's population with the same age and sex have an educational attainment t bla. bla. schlecht beschrieben.
+
+Hence, every individual from the same region, the same age group, the same sex and the same educational attainment has the same value of relativ education. This make things somewhat easier as we only need one observation for each of the different combinations of characteristics.
+>>>>>>> d0345a857960d7fa0322c88e67f71c4e986f30cf
 
 Additional measures
 -------------------
@@ -122,7 +130,11 @@ In order to illustrate wrangling the data into the required format, we will assu
 library(tidyverse)
 ```
 
+<<<<<<< HEAD
 Loading the dataset using the haven-package:
+=======
+Loading the dataset using the haven package:
+>>>>>>> d0345a857960d7fa0322c88e67f71c4e986f30cf
 
 ``` r
 data <- haven::read_dta("selectivity_individual.dta") 
@@ -142,7 +154,11 @@ data_clean <- data %>%
          unemp_var=VC_UNEMP)
 ```
 
+<<<<<<< HEAD
 Note that we did not define educat3 since this will be our reference category. Now, we simply aggregate each row by first grouping the data by each combination of region, age, sex and education and then replacing multiple values by their mean. Again, since every individual from the same region, the same age group, the same sex and the same educational attainment has the same value for each variable of interest (e.g., bias4c or the regional- and country-level measures), using the mean will leave their values unchanged.
+=======
+Note that we did not define edcat3 since this will be our reference category. Now, we simply aggregate each row by first grouping the data by each combination of region, age, sex and education and then replacing multiple values by their mean. Again, since every individual from the same region, the same age group, the same sex and the same educational attainment has the same value for each variable of interest (e.g., bias4c or the regional- and country-level measures), using the mean will leave their values unchanged.
+>>>>>>> d0345a857960d7fa0322c88e67f71c4e986f30cf
 
 ``` r
 data_clean <- data_clean %>% 
@@ -178,7 +194,11 @@ Working with ML-tools
 Loading pre-trained models
 --------------------------
 
+<<<<<<< HEAD
 Now we can load the pre-trained machine learning models and use them to make predictions using our new data. Note that the corresponding files can be downloaded from the this github page. First, we need to load the packages used to estimate each model in order to gain access to model-specific prediction routines.
+=======
+Now, we can load the pre-trained machine learning models and use them to make predictions using our new data. First, we need to load the packages used to estimate each model in order to gain access to model-specific prediction routines.
+>>>>>>> d0345a857960d7fa0322c88e67f71c4e986f30cf
 
 ``` r
 library(randomForest)
@@ -351,7 +371,11 @@ Unsurprisingly, the figures neatly visualize the better performance of the tree-
 Identifying biased cases
 ========================
 
+<<<<<<< HEAD
 For simplicities sake, we will use the random forest predictions to identify those regions and countries where researchers can expect large bias based on the predictions. In an actual application, it might however be sensible to validate findings using the other prediction methods as well. For now, we will define "large" bias as exceeding absolute values of 0.15.
+=======
+For simplicities sake, we will use the random forest predictions to identify those regions and countries where researchers can expect large bias based on the predictions. In an actual application, it might however be sensible to validate findings using the other prediction methods as well. For now, we will define "large" as bias exceeding absolute values of 0.15.
+>>>>>>> d0345a857960d7fa0322c88e67f71c4e986f30cf
 
 First, we need to merge the predictions back to the original dataset
 
@@ -384,7 +408,11 @@ ggplot(problem_data) +
 
 Considering that the data includes 305 regions from 22 origin countries, the first plot shows on usual clustering of only a handful of origin countries: Poland, Argentinia, Bulgaria, China, Romania and Turkey.
 
+<<<<<<< HEAD
 Note that these numbers may be somewhat misleading for a host of difference reasons: for one, every region is counted as a single case. Hence, while Argentinia is "only" represented with one region, it happens to be the region sending most migrants in our data (~30 percent). Similarily, Turkey is strongly represented among the outliers with 11 regions but mostly with regions which send comparatively few emigrants (alltogther 26 percent). One way to take this into account is to add information regarding (non-normalized) outmigration rates to the figure:
+=======
+Note that these numbers may be somewhat misleading for a host of difference reasons: for one, every region is counted as a single case. Hence, while Argentinia is "only" represented with one region, it happens to be the region sending most migrants in our data (~30 percent). Similarily, Turkey is strongly represented among the outliers with 11 regions but mostly with regions which send comparatively few emigrants (alltogther 26 percent). One way to take this into account is add information regarding (non-normalized) outmigration rates to the figure:
+>>>>>>> d0345a857960d7fa0322c88e67f71c4e986f30cf
 
 ``` r
 n_data <- problem_data %>% group_by(region) %>% count() %>% ungroup() 
@@ -397,6 +425,10 @@ ggplot(problem_data) +
 
 ![](selectivity_tutorial_files/figure-markdown_github/adjusted_regions-1.png)
 
+<<<<<<< HEAD
 First of all, all regions depicted have outmigration ratios greater 1 suggesting that all of them have higher outmigration rates than expected giving their actual population size. More specifically, a value of 6 (see the Turkish region of Malatya) send 6 times more migrants than expected given its population. From a substantive standpoint then, all cases identified appear to be important sending regions. In addition, cases that seemed of little important seem to be much more influential taking outmigration rates into account (i.e, the Turkish Malatya region). A second important points relates to the number of regions each country is divided into. Given that, for example, China has 32 regions, having a few show up as strong outliers with moderately high outmigration rates is probably not the best incentive to invest much time and money into collecting regionalized data. Turkey has an even larger number of regions, however the extent of bias given outmigration rates probably represents a higher incentive to go the extra mile and collect additional data.
+=======
+First of all, all regions depicted have outmigration ratios greater 1 suggesting that all of them have higher outmigration rates than expected giving their actual population size. From a substantive standpoint, all cases identified appear to be important sending regions. In addition, cases that seemed of little important seem to be much more influential taking outmigration rates into account (i.e, the Turkish Malatya region). A second important points relates to the number of regions each country is divided into. Given that, for example, China has 32 regions, having a few show up as strong outliers with moderately high outmigration rates is probably not the best incentive to invest much time and money into collecting regionalized data. Turkey has an even larger number of regions, however the extent of bias given outmigration rates probably represents a higher incentive to go the extra mile and collect additional data.
+>>>>>>> d0345a857960d7fa0322c88e67f71c4e986f30cf
 
 To summarize, a region showing up as a strong outlier among the bias estimates should not be taken as an automatic red flag but rather requires a careful weighing up of collecting more detailed data or accepting that measurement error will likely exceed predefined levels for a small subset of the data.
