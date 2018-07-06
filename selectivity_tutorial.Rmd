@@ -8,6 +8,7 @@ output:
   #  toc_float: true
   #  theme: readable
   md_document:
+    toc: true
     variant: markdown_github
 ---
 
