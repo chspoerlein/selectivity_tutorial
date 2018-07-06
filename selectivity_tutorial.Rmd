@@ -3,10 +3,12 @@ title: "Selectivity Tutorial"
 author: "Christoph Spörlein and Cornelia Kristen"
 date: "30 Juni 2018"
 output: 
-  html_document:
-    toc: true
-    toc_float: true
-    theme: readable
+  #html_document:
+  #  toc: true
+  #  toc_float: true
+  #  theme: readable
+  md_document:
+    variant: markdown_github
 ---
 
 ```{r setup, include=FALSE}
