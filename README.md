@@ -13,7 +13,7 @@
 Introduction
 ============
 
-This tutorial describes the usage of pre-trained machine learning (ML) tools to predict the bias in measuring educational selectivity on the country-level as opposed to the regional level. In short, measurement error can substantially bias measures of educational selectivity in case outmigration is highly concentrated in some regions and when these regions are atypical in terms of their levels of unemployment and economic development. More details can be found in the article "Why we should care about regional origins: Educational selectivity among recent refugees and labor migrants in Western Europe." by Christoph Spörlein and Cornelia Kristen, published in Frontiers (2018).
+This tutorial describes the usage of pre-trained machine learning (ML) tools to predict the bias in measuring educational selectivity on the country-level as opposed to the regional level. In short, measurement error can substantially bias measures of educational selectivity in case outmigration is highly concentrated in some regions and when these regions are atypical in terms of their levels of unemployment and economic development. More details can be found in the article "Why we should care about regional origins: Educational selectivity among recent refugees and labor migrants in Western Europe." by Christoph Spörlein and Cornelia Kristen, to be published in Frontiers (2018).
 
 Pre-processing data
 ===================
