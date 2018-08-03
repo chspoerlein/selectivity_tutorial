@@ -23,13 +23,13 @@ In order to use the pre-trained machine learning tools to predict the expected b
 Measuring educational selectivity
 ---------------------------------
 
-In short, educational selectivity is measured by recording individuals position in the age- and sex-specific educational distributions in their region (and/or country) of origin (i.e., what is typically refered to as relative education). Formally, relative education is defined as
+In short, educational selectivity is measured by recording individual's position in the age- and sex-specific educational distributions in their region (and/or country) of origin (i.e., what is typically referred to as relative education). Formally, relative education is defined as
 
 $$\\sum\_{i=1}^I (\\frac{a\_{i-1}}{N} +\\frac{a\_{i}}{2\*N})$$
 
-where i refers to the educational categories, *a*<sub>*i* − 1</sub> to the number of individuals one educational category lower \[this term is ignored for i=1, i.e., the lowest educational category\], *a*<sub>*i*</sub> to the number of individuals in the *i*<sup>*t**h*</sup> educational category and N to the total number of respondents in the same region, age and gender group as the respondent. The resulting values range from 0 to 1 where, for example, 0.6 would suggest that 60 percent of the regions's population with the same age and sex have an educational attainment that is at most as high as the individual considered.
+where i refers to the educational categories, *a*<sub>*i* − 1</sub> to the number of individuals one educational category lower \[this term is ignored for i=1, i.e., the lowest educational category\], *a*<sub>*i*</sub> to the number of individuals in the *i*<sup>*th*</sup> educational category and N to the total number of respondents in the same region, age and gender group as the respondent. The resulting values range from 0 to 1 where, for example, 0.6 would suggest that 60 percent of the region's population with the same age and sex have an educational attainment that is at most as high as the individual considered.
 
-Hence, every individual from the same region, the same age group, the same sex and the same educational attainment has the same value of relativ education. This makes things somewhat easier as we only need one observation for each of the different combinations of characteristics.
+Hence, every individual from the same region, the same age group, the same sex and the same educational attainment has the same value of relative education. This makes things somewhat easier as we only need one observation for each of the different combinations of characteristics.
 
 
 Additional measures
@@ -69,7 +69,7 @@ In addition, the paper discusses a number of region- and country-level indicator
 </tr>
 <tr class="odd">
 <td>Education</td>
-<td>Measured using four dummy varaibles: primary completed [ISCED0,1], some secondary [ISCED2], secondary completed [ISCED3,4], tertiary completed [ISCED5,6]</td>
+<td>Measured using four dummy variables: primary completed [ISCED0,1], some secondary [ISCED2], secondary completed [ISCED3,4], tertiary completed [ISCED5,6]</td>
 <td>Individual</td>
 <td><em>educat1</em>-<em>educat4</em></td>
 </tr>
@@ -112,12 +112,12 @@ In addition, the paper discusses a number of region- and country-level indicator
 </tbody>
 </table>
 
-All continous variables enter the analyses normalized.
+All continuous variables enter the analyses normalized.
 
 Tidying data
 ------------
 
-In order to illustrate wrangling the data into the required format, we will assume a typical scenario in quantitative sociological research: researchers are working with an individual level dataset that includes all variables listed in the above table and that is saved in Stata's .dta format. From hereon, we will rely heavily on packages from the "tidyverse" (see the excellent introductory book by [Grolemund and Hadley](http://r4ds.had.co.nz/)).
+In order to illustrate wrangling the data into the required format, we will assume a typical scenario in quantitative sociological research: researchers are working with an individual level dataset that includes all variables listed in the above table and that is saved in Stata's .dta format. From here on, we will rely heavily on packages from the "tidyverse" (see the excellent introductory book by [Grolemund and Hadley](http://r4ds.had.co.nz/)).
 
 ``` r
 library(tidyverse)
@@ -195,7 +195,7 @@ load("xgb.RData")
 load("nn.RData")
 ```
 
-Model summarys
+Model summary
 --------------
 
 We can get some short model summaries for the two tree-based methods:
@@ -388,10 +388,10 @@ ggplot(problem_data) +
 
 ![](selectivity_tutorial_files/figure-markdown_github/regions-1.png)
 
-Considering that the data includes 305 regions from 22 origin countries, the first plot shows on usual clustering of only a handful of origin countries: Poland, Argentinia, Bulgaria, China, Romania and Turkey.
+Considering that the data includes 305 regions from 22 origin countries, the first plot shows on unusual clustering of only a handful of origin countries: Poland, Argentinia, Bulgaria, China, Romania and Turkey.
 
 
-Note that these numbers may be somewhat misleading for a host of difference reasons: for one, every region is counted as a single case. Hence, while Argentinia is "only" represented with one region, it happens to be the region sending most migrants in our data (~30 percent). Similarily, Turkey is strongly represented among the outliers with 11 regions but mostly with regions which send comparatively few emigrants (alltogther 26 percent). One way to take this into account is add information regarding (non-normalized) outmigration rates to the figure:
+Note that these numbers may be somewhat misleading for a host of difference reasons: for one, every region is counted as a single case. Hence, while Argentina is "only" represented with one region, it happens to be the region sending most migrants in our data (~30 percent). Similarly, Turkey is strongly represented among the outliers with 11 regions but mostly with regions which send comparatively few emigrants (altogether 26 percent). One way to take this into account is add information regarding (non-normalized) outmigration rates to the figure:
 
 ``` r
 n_data <- problem_data %>% group_by(region) %>% count() %>% ungroup() 
@@ -405,6 +405,6 @@ ggplot(problem_data) +
 ![](selectivity_tutorial_files/figure-markdown_github/adjusted_regions-1.png)
 
 
-First of all, all regions depicted have outmigration ratios greater 1 suggesting that all of them have higher outmigration rates than expected giving their actual population size. From a substantive standpoint, all cases identified appear to be important sending regions. In addition, cases that seemed of little important seem to be much more influential taking outmigration rates into account (i.e, the Turkish Malatya region). A second important points relates to the number of regions each country is divided into. Given that, for example, China has 32 regions, having a few show up as strong outliers with moderately high outmigration rates is probably not the best incentive to invest much time and money into collecting regionalized data. Turkey has an even larger number of regions, however the extent of bias given outmigration rates probably represents a higher incentive to go the extra mile and collect additional data.
+First of all, all regions depicted have outmigration ratios greater 1 suggesting that all of them have higher outmigration rates than expected giving their actual population size. From a substantive standpoint, all cases identified appear to be important sending regions. In addition, cases that seemed of little important seem to be much more influential taking outmigration rates into account (i.e., the Turkish Malatya region). A second important point relates to the number of regions each country is divided into. Given that, for example, China has 32 regions, having a few show up as strong outliers with moderately high outmigration rates is probably not the best incentive to invest much time and money into collecting regionalized data. Turkey has an even larger number of regions, however the extent of bias given outmigration rates probably represents a higher incentive to go the extra mile and collect additional data.
 
 To summarize, a region showing up as a strong outlier among the bias estimates should not be taken as an automatic red flag but rather requires a careful weighing up of collecting more detailed data or accepting that measurement error will likely exceed predefined levels for a small subset of the data.
